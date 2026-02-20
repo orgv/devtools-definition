@@ -1,5 +1,0 @@
-argo-cd:
-  server:
-    insecure: true # important for preventing the UI from disconnecting due to SSL
-    service:
-      type: LoadBalancer # setting it to LB
