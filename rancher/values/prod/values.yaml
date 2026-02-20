@@ -1,5 +1,8 @@
 rancher:
   hostname: rancher.local
   bootstrapPassword: "admin12345678"
+  ingress:
+    tls:
+      source: rancher
   service:
     type: LoadBalancer
