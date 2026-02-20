@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: devtools-definition-application-set
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: 'https://github.com/orgv/devtools-definition.git'
+        revision: HEAD
+        directories:
+          - path: *
+  template:
+    metadata:
+      name: '{{path.basename}}-creator-application-set'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/orgv/devtools-provision.git'
+        targetRevision: HEAD
+        path: '{{path.basename}}-wrapper' # wrapper path
+        directory:
+          include: 'ApplicationSet.yaml'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        createNamespace: true
