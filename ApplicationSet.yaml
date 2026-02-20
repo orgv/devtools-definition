@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: 'https://github.com/orgv/devtools-provision.git'
         targetRevision: HEAD
-        path: '{{path.basename}}-wrapper' # wrapper path
+        path: 'wrapper-{{path.basename}}' # wrapper path
         directory:
           include: 'ApplicationSet.yaml'
       destination:
